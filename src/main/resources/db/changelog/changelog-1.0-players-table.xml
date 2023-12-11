@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+  <changeSet author="arinze" id="players-1" dbms="h2">
+    <createSequence cacheSize="20" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+      minValue="1" startValue="1" sequenceName="PLAYERS_ID_SEQ"/>
+  </changeSet>
+  <changeSet author="arinze" id="players-1" dbms="oracle">
+    <createSequence cacheSize="20" cycle="false" incrementBy="1" maxValue="9999999999999999999999999999"
+      minValue="1" startValue="1" sequenceName="PLAYERS_ID_SEQ"/>
+  </changeSet>
+  <changeSet author="arinze" id="players-2">
+    <createTable tableName="PLAYERS">
+      <column name="ID" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="NAME" type="VARCHAR(255)"/>
+    </createTable>
+  </changeSet>
+  <changeSet author="arinze" id="players-3">
+    <addPrimaryKey columnNames="ID" constraintName="PK_PLAYERS_ID"
+      tableName="PLAYERS"/>
+  </changeSet>
+
+</databaseChangeLog>
