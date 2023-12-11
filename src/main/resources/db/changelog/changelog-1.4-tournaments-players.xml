@@ -7,7 +7,8 @@
       minValue="1" startValue="1" sequenceName="TOURNAMENTS_PLAYERS_ID_SEQ"/>
   </changeSet>
   <changeSet author="arinze" id="tournaments-players-1" dbms="oracle">
-    <createSequence cacheSize="20" cycle="false" incrementBy="1" maxValue="9999999999999999999999999999"
+    <createSequence cacheSize="20" cycle="false" incrementBy="1"
+      maxValue="9999999999999999999999999999"
       minValue="1" startValue="1" sequenceName="TOURNAMENTS_PLAYERS_ID_SEQ"/>
   </changeSet>
   <changeSet author="arinze" id="tournaments-players-2">
@@ -16,10 +17,12 @@
         <constraints nullable="false"/>
       </column>
       <column name="TOURNAMENT_ID" type="BIGINT">
-        <constraints nullable="false"/>
+        <constraints nullable="false" unique="true"
+          uniqueConstraintName="tournament_player_unique_reg"/>
       </column>
       <column name="PLAYER_ID" type="BIGINT">
-        <constraints nullable="false"/>
+        <constraints nullable="false" unique="true"
+          uniqueConstraintName="tournament_player_unique_reg"/>
       </column>
 
     </createTable>
@@ -32,9 +35,11 @@
 
   <changeSet author="arinze" id="tournaments-players-4">
     <addForeignKeyConstraint baseColumnNames="TOURNAMENT_ID" baseTableName="TOURNAMENTS_PLAYERS"
-      constraintName="FK_TOURNAMENTS_PLAYERS_TOURNAMENT_ID" deferrable="false" initiallyDeferred="false"
+      constraintName="FK_TOURNAMENTS_PLAYERS_TOURNAMENT_ID" deferrable="false"
+      initiallyDeferred="false"
       onDelete="RESTRICT"
       onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TOURNAMENTS"/>
   </changeSet>
+
 
 </databaseChangeLog>

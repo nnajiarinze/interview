@@ -57,7 +57,8 @@ public class PlayersController {
 
   @PostMapping("/prizes")
   public ResponseEntity<PlayerPrize> createPlayerPrize(@RequestBody PostReqPlayerPrize playerPrize) {
-    DbPlayersPrizes dbPlayersPrize = playersPrizesService.createPlayerPrize(playerPrize);
+    DbPlayers dbPlayer = playersService.getPlayerById(playerPrize.getPlayerId());
+    DbPlayersPrizes dbPlayersPrize = playersPrizesService.createPlayerPrize(playerPrize, dbPlayer);
     return ResponseEntity.ok().body(playersResponseBuilder.buildPlayerPrize(dbPlayersPrize));
   }
 }

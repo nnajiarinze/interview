@@ -1,6 +1,7 @@
 package net.javaguides.springboot.service;
 
 import java.util.List;
+import net.javaguides.springboot.datasource.provider.database.model.DbPlayers;
 import net.javaguides.springboot.datasource.provider.database.model.DbPlayersPrizes;
 import net.javaguides.springboot.datasource.provider.database.repository.PlayersPrizesRepository;
 import net.javaguides.springboot.exception.ResourceNotFoundException;
@@ -18,9 +19,10 @@ public class PlayersPrizesServiceImpl implements PlayersPrizesService {
 
 
   @Override
-  public DbPlayersPrizes createPlayerPrize(PostReqPlayerPrize postReqPlayerPrize) {
+  public DbPlayersPrizes createPlayerPrize(PostReqPlayerPrize postReqPlayerPrize,
+      DbPlayers dbPlayer) {
     DbPlayersPrizes player = DbPlayersPrizes.builder()
-        .playerId(postReqPlayerPrize.getPlayerId())
+        .player(dbPlayer)
         .prizeId(postReqPlayerPrize.getPrizeId())
         .build();
     return playersPrizesRepository.save(player);

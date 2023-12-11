@@ -14,14 +14,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class TournamentsResponseBuilder {
 
-  @Autowired
-  PlayersService playersService;
-//  private final PlayersResponseBuilder playersResponseBuilder;
-//
-//  public TournamentsResponseBuilder(PlayersResponseBuilder playersResponseBuilder) {
-//    this.playersResponseBuilder = playersResponseBuilder;
-//  }
-
   public List<Tournament> build(List<DbTournaments> dbTournamentsList) {
     List<Tournament> tournaments = new ArrayList<>();
 
@@ -49,13 +41,5 @@ public class TournamentsResponseBuilder {
             .build())
         .build();
   }
-
-//  public TournamentPlayer buildTournamentPlayer(DbTournamentsPlayers dbTournamentPlayer) {
-//    return TournamentPlayer.builder()
-//        .tournamentId(dbTournamentPlayer.getTournamentId())
-//        .player(playersResponseBuilder.build(
-//            playersService.getPlayerById(dbTournamentPlayer.getPlayerId())))
-//        .build();
-//  }
 
 }

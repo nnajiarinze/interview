@@ -1,6 +1,7 @@
 package net.javaguides.springboot.service;
 
 import java.util.List;
+import net.javaguides.springboot.datasource.provider.database.model.DbPlayers;
 import net.javaguides.springboot.datasource.provider.database.model.DbTournamentsPlayers;
 import net.javaguides.springboot.datasource.provider.database.repository.TournamentsPlayersRepository;
 import net.javaguides.springboot.exception.ResourceNotFoundException;
@@ -19,9 +20,9 @@ public class TournamentsPlayersServiceImpl implements TournamentsPlayersService 
 
   @Override
   public DbTournamentsPlayers createTournamentPlayer(
-      PostReqTournamentPlayer postReqTournamentPlayer) {
+      PostReqTournamentPlayer postReqTournamentPlayer, DbPlayers dbPlayer) {
     DbTournamentsPlayers dbTournamentsPlayer = DbTournamentsPlayers.builder()
-        .playerId(postReqTournamentPlayer.getPlayerId())
+        .player(dbPlayer)
         .tournamentId(postReqTournamentPlayer.getTournamentId()).build();
 
     return tournamentsPlayersRepository.save(dbTournamentsPlayer);
@@ -33,12 +34,13 @@ public class TournamentsPlayersServiceImpl implements TournamentsPlayersService 
 
     List<DbTournamentsPlayers> tournamentsPlayersList =
         tournamentsPlayersRepository.getDbTournamentsPlayersByTournamentId(
-        tournamentId);
+            tournamentId);
 
     if (!tournamentsPlayersList.isEmpty()) {
       return tournamentsPlayersList;
     } else {
-      throw new ResourceNotFoundException("Tournamenet Players not found with tournament id : " + tournamentId);
+      throw new ResourceNotFoundException(
+          "Tournamenet Players not found with tournament id : " + tournamentId);
     }
   }
 }
