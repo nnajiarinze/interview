@@ -8,7 +8,7 @@
 		<version>3.0.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>net.javaguides.springboot</groupId>
+	<groupId>com.paf.exercise</groupId>
 	<artifactId>springboot-crud-hibernate-example</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-crud-hibernate-example</name>
