@@ -1,5 +1,8 @@
 package com.paf.exercise.service;
 
+
+import static com.paf.exercise.constants.ErrorConstants.TOURNAMENT_NOT_FOUND;
+
 import com.paf.exercise.datasource.provider.database.model.DbCurrencies;
 import com.paf.exercise.datasource.provider.database.model.DbTournaments;
 import com.paf.exercise.exception.ResourceNotFoundException;
@@ -37,7 +40,7 @@ public class TournamentsServiceImpl implements TournamentsService {
     if (tournamentsOptional.isPresent()) {
       return tournamentsOptional.get();
     } else {
-      throw new ResourceNotFoundException("Tournamenet not found with id : " + tournamentId);
+      throw new ResourceNotFoundException(String.format(TOURNAMENT_NOT_FOUND, tournamentId));
     }
   }
 }

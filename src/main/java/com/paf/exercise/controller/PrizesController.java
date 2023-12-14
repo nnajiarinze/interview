@@ -5,7 +5,6 @@ import com.paf.exercise.model.Prize;
 import com.paf.exercise.model.reponse.PrizesResponseBuilder;
 import com.paf.exercise.model.request.PostReqPrize;
 import com.paf.exercise.service.PrizesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,11 +19,11 @@ public class PrizesController {
 
   private final PrizesResponseBuilder prizesResponseBuilder;
 
-  @Autowired
   private PrizesService prizesService;
 
-  public PrizesController(PrizesResponseBuilder prizesResponseBuilder) {
+  public PrizesController(PrizesResponseBuilder prizesResponseBuilder, PrizesService prizesService) {
     this.prizesResponseBuilder = prizesResponseBuilder;
+    this.prizesService = prizesService;
   }
 
 

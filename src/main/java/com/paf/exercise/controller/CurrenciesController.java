@@ -5,7 +5,6 @@ import com.paf.exercise.model.Currency;
 import com.paf.exercise.model.reponse.CurrenciesResponseBuilder;
 import com.paf.exercise.model.request.PostReqCurrency;
 import com.paf.exercise.service.CurrenciesService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class CurrenciesController {
 
   private final CurrenciesResponseBuilder currenciesResponseBuilder;
-  @Autowired
   private CurrenciesService currenciesService;
 
-  public CurrenciesController(CurrenciesResponseBuilder currenciesResponseBuilder) {
+  public CurrenciesController(CurrenciesResponseBuilder currenciesResponseBuilder,
+      CurrenciesService currenciesService) {
     this.currenciesResponseBuilder = currenciesResponseBuilder;
+    this.currenciesService = currenciesService;
   }
 
   @GetMapping("/{id}")

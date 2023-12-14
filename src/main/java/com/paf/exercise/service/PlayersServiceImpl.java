@@ -1,5 +1,7 @@
 package com.paf.exercise.service;
 
+import static com.paf.exercise.constants.ErrorConstants.PLAYER_NOT_FOUND;
+
 import com.paf.exercise.datasource.provider.database.repository.PlayersRepository;
 import java.util.Optional;
 import com.paf.exercise.exception.ResourceNotFoundException;
@@ -32,7 +34,7 @@ public class PlayersServiceImpl implements PlayersService {
     if (playersOptional.isPresent()) {
       return playersOptional.get();
     } else {
-      throw new ResourceNotFoundException("Player not found with id : " + playerId);
+      throw new ResourceNotFoundException(String.format(PLAYER_NOT_FOUND, playerId));
     }
   }
 }

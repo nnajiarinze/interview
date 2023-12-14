@@ -21,7 +21,6 @@ import com.paf.exercise.model.Tournament;
 import com.paf.exercise.model.reponse.TournamentsResponseBuilder;
 import com.paf.exercise.model.request.PostReqTournament;
 import com.paf.exercise.service.TournamentsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,22 +36,25 @@ public class TournamentsController {
 
   private final TournamentsResponseBuilder tournamentsResponseBuilder;
   private final PlayersResponseBuilder playersResponseBuilder;
-  @Autowired
+
   private TournamentsService tournamentsService;
 
-  @Autowired
   private TournamentsPlayersService tournamentsPlayersService;
 
-  @Autowired
   private PlayersService playersService;
 
-  @Autowired
   private CurrenciesService currenciesService;
 
   public TournamentsController(TournamentsResponseBuilder tournamentsResponseBuilder,
-      PlayersResponseBuilder playersResponseBuilder) {
+      PlayersResponseBuilder playersResponseBuilder, TournamentsService tournamentsService,
+      TournamentsPlayersService tournamentsPlayersService, PlayersService playersService,
+      CurrenciesService currenciesService) {
     this.tournamentsResponseBuilder = tournamentsResponseBuilder;
     this.playersResponseBuilder = playersResponseBuilder;
+    this.tournamentsService = tournamentsService;
+    this.tournamentsPlayersService = tournamentsPlayersService;
+    this.playersService = playersService;
+    this.currenciesService = currenciesService;
   }
 
 

@@ -11,7 +11,6 @@ import com.paf.exercise.model.request.PostReqPlayer;
 import com.paf.exercise.model.request.PostReqPlayerPrize;
 import com.paf.exercise.service.PlayersPrizesService;
 import com.paf.exercise.service.PlayersService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,14 +24,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class PlayersController {
 
   private final PlayersResponseBuilder playersResponseBuilder;
-  @Autowired
+
   private PlayersService playersService;
 
-  @Autowired
+
   private PlayersPrizesService playersPrizesService;
 
-  public PlayersController(PlayersResponseBuilder playersResponseBuilder) {
+  public PlayersController(PlayersResponseBuilder playersResponseBuilder,
+      PlayersService playersService, PlayersPrizesService playersPrizesService) {
     this.playersResponseBuilder = playersResponseBuilder;
+    this.playersService = playersService;
+    this.playersPrizesService = playersPrizesService;
   }
 
 
